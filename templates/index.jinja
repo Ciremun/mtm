@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename = 'favicon.ico') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'main.css') }}">
+    <title>Mini Tiermaker</title>
+</head>
+<body>
+    <div class="content">
+        <section class="tier-section">
+            <div class="tier">
+                <div class="row" data-row>
+                    <div class="rank S"><div>S</div></div>
+                    <div class="items" data-items></div>
+                </div>
+                <div class="row" data-row>
+                    <div class="rank A"><div>A</div></div>
+                    <div class="items" data-items></div>
+                </div>
+                <div class="row" data-row>
+                    <div class="rank B"><div>B</div></div>
+                    <div class="items" data-items></div>
+                </div>
+                <div class="row" data-row>
+                    <div class="rank C"><div>C</div></div>
+                    <div class="items" data-items></div>
+                </div>
+                <div class="row" data-row>
+                    <div class="rank D"><div>D</div></div>
+                    <div class="items" data-items></div>
+                </div>
+                <div class="row" data-row>
+                    <div class="rank F"><div>F</div></div>
+                    <div class="items" data-items></div>
+                </div>
+                <div class="row" data-row>
+                    <div class="rank G"><div>G</div></div>
+                    <div class="items" data-items></div>
+                </div>
+            </div>
+        </section>
+        <input id="to-rank-input" type="file" accept="image/*" multiple>
+        <div id="to-rank"></div>
+    </div>
+    <script src="{{ url_for('static', filename = 'index.js') }}"></script>
+</body>
+</html>
