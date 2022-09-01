@@ -1,10 +1,13 @@
 let selected_element = null;
 
-let insert_element = (selected, target, is_row) => {
+let insert_element = (selected, target) => {
     selected.remove();
-    if (is_row)
-        target = target.children[1];
-    target.append(selected);
+    if ('items' in target.dataset)
+        target.append(selected);
+    if ('drag' in target.dataset)
+        target.parentNode.insertBefore(selected, target.nextSibling);
+    if ('row' in target.dataset)
+        target.children[1].append(selected);;
 }
 
 let drag_start = (e) => 'drag' in e.target.dataset ? selected_element = e.target : null;
@@ -22,10 +25,8 @@ let drag_end = (e) => {
     if (selected_element)
     {
         let target_element = document.elementsFromPoint(e.clientX, e.clientY)[1];
-        if ('items' in target_element.dataset)
-            insert_element(selected_element, target_element, false);
-        else if ('row' in target_element.dataset)
-            insert_element(selected_element, target_element, true);
+        if (['items', 'drag', 'row'].some((d) => d in target_element.dataset))
+            insert_element(selected_element, target_element);
         selected_element.style.position = null;
         selected_element.style.left = null;
         selected_element.style.top = null;
