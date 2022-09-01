@@ -7,6 +7,7 @@ body {
 }
 
 input {
+    width: 40vw;
     font-weight: bold;
     font-size: 16pt;
     border: none;
