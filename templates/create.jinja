@@ -1,0 +1,50 @@
+{% extends "base.jinja" %}
+
+{% block title %}Mini Tiermaker - Create{% endblock %}
+
+{% block content %}
+<div class="content">
+    <section class="tier-section">
+        <div class="tier-info">
+            <div class="tier-title"><input type="text" placeholder="Title" /></div>
+            <div class="tier-author"><input style="text-align:right" type="text" placeholder="Author" /></div>
+        </div>
+        <div class="tier">
+            <div class="row" data-row>
+                <div class="rank S"><div>S</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank A"><div>A</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank B"><div>B</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank C"><div>C</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank D"><div>D</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank F"><div>F</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank G"><div>G</div></div>
+                <div class="items" data-items></div>
+            </div>
+        </div>
+    </section>
+    <input id="to-rank-input" type="file" accept="image/*" multiple>
+    <div data-items id="to-rank" onclick="rank_input_click()">
+        <div data-label class="to-rank-label"><div>Choose or Drag Files</div></div>
+    </div>
+    <div class="create-tier" onclick="submit_tier()"><div>Create Tier</div></div>
+</div>
+<script src="{{ url_for('static', filename = 'index.js') }}"></script>
+{% endblock %}
