@@ -58,9 +58,7 @@ window.addEventListener('drop', (e) => {
         for (const file of e.dataTransfer.files)
         {
             let reader = new FileReader();
-            reader.onload = (e) => {
-                insert_element(construct_item(e.target.result), target_element);
-            }
+            reader.onload = (e) => { insert_element(construct_item(e.target.result), target_element); }
             reader.readAsDataURL(file);
         }
     }
