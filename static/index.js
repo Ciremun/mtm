@@ -13,8 +13,8 @@ let drag_move = (e) => {
     if (selected_element)
     {
         selected_element.style.position = 'absolute';
-        selected_element.style.left = `${e.clientX - selected_element.clientWidth / 2}px`;
-        selected_element.style.top = `${e.clientY - selected_element.clientHeight / 2}px`;
+        selected_element.style.left = `${e.clientX + window.scrollX - selected_element.clientWidth / 2}px`;
+        selected_element.style.top = `${e.clientY + window.scrollY - selected_element.clientHeight / 2}px`;
     }
 }
 
