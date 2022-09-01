@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from flask import Flask, render_template, request, abort
+from flask import Flask, render_template, request, abort, redirect
 from gevent.pywsgi import WSGIServer
 from dotenv import load_dotenv
 
@@ -16,6 +16,8 @@ app.jinja_env.globals.update(tier_datetime=tier_datetime)
 @app.route('/')
 def index():
     tiers = db.all_tiers()
+    if not tiers:
+        return redirect('/create')
     return render_template('index.jinja', tiers=tiers)
 
 @app.route('/create', methods=['GET', 'POST'])
@@ -29,7 +31,7 @@ def create():
     id, = db.create_tier(**tier)
     return {'success': True, 'id': id}, 200
 
-@app.route('/tiers/<int:id>')
+@app.route('/<int:id>')
 def tier_by_id(id: int):
     tier = db.tier_by_id(id)
     if not tier:

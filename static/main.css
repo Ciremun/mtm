@@ -6,12 +6,26 @@ body {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
+a {
+    text-decoration: underline;
+    color: black;
+}
+
 input {
     width: 40vw;
     font-weight: bold;
     font-size: 16pt;
     border: none;
     outline: none;
+}
+
+.navbar-links {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.navbar-links>div {
+    padding: 5px;
 }
 
 .content {
