@@ -2,61 +2,6 @@ let selected_element = null;
 let to_rank_div = document.getElementById('to-rank');
 let to_rank_input = document.getElementById('to-rank-input');
 
-let post_data = async (url, data = {}) => {
-    const response = await fetch(url, {
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        method: 'POST',
-        body: JSON.stringify(data)
-    });
-    return response.json();
-}
-
-let show_alert = (message) => {
-    let alerts = document.getElementsByClassName('alert');
-    if (alerts.length !== 0)
-        for (item of alerts)
-            item.remove();
-    let outer_div = document.createElement('div'),
-        inner_div = document.createElement('div');
-    outer_div.classList.add('alert');
-    inner_div.classList.add('alert_content');
-    inner_div.innerText = message;
-    outer_div.appendChild(inner_div);
-    document.body.appendChild(outer_div);
-}
-
-let submit_tier = () => {
-    let tier = {
-        items: {}
-    };
-    let tier_section = document.getElementsByClassName('tier-section')[0];
-    let tier_info = tier_section.children[0];
-    let [title, author] = tier_info.children;
-    tier.title = title.children[0].value;
-    tier.author = author.children[0].value;
-    if ([tier.title, tier.author].some(x => !x))
-    {
-        show_alert("Error: no title or author");
-        return;
-    }
-    let tier_div = tier_section.children[1];
-    for (const row of tier_div.children)
-    {
-        let [rank, items] = row.children;
-        rank = rank.children[0].innerText;
-        let image_sources = [];
-        for (const item of items.children)
-            image_sources.push(item.src);
-        tier.items[rank] = image_sources;
-    }
-    post_data('/create', tier).then(r => {
-        if (!r.success) show_alert("Bad Request");
-        else show_alert(`Tier created, id: ${r.id}`);
-    });
-};
-
 let construct_item = (src) => {
     let image = new Image();
     image.dataset.drag = '';
@@ -141,4 +86,25 @@ if (to_rank_input)
 let rank_input_click = () => {
     if (to_rank_div.children.length === 1)
         to_rank_input.click();
+};
+
+let save_blob = (blob, filename) => {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    document.body.appendChild(a);
+    a.style.display = 'none';
+    a.href = url;
+    a.download = filename;
+    a.click();
+};
+
+let tier_title = document.getElementById('tier-title');
+
+let create_tier = () => {
+    html2canvas(document.querySelector("#capture")).then(canvas => {
+        canvas.toBlob((blob) => {
+            let filename = tier_title.value ? `${tier_title.value}.png` : 'tier.png';
+            save_blob(blob, filename);
+        });
+    });
 };

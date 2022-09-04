@@ -4,25 +4,48 @@
 
 {% block content %}
 <div class="content">
-    <section class="tier-section">
-        {% for title, author, added, tier_data in tiers %}
-            <div class="tier-info">
-                <div class="tier-title">{{ title }}</div>
-                <div class="tier-author">By {{ author }}, {{ tier_datetime(added) }}</div>
+    <section id="capture" class="tier-section">
+        <div class="tier-info">
+            <div class="tier-title"><input id="tier-title" type="text" placeholder="Title" /></div>
+            <div class="tier-author"><input style="text-align:right" type="text" placeholder="Author" /></div>
+        </div>
+        <div class="tier">
+            <div class="row" data-row>
+                <div class="rank S"><div>S</div></div>
+                <div class="items" data-items></div>
             </div>
-            <div class="tier">
-            {% for rank, tier_items in tier_data.items() %}
-                <div class="row" data-row>
-                    <div class="rank {{ rank }}"><div>{{ rank }}</div></div>
-                    <div class="items" data-items>
-                        {% for src in tier_items %}
-                        <img data-drag class="item" src="{{ src }}" draggable="false"/>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endfor %}
+            <div class="row" data-row>
+                <div class="rank A"><div>A</div></div>
+                <div class="items" data-items></div>
             </div>
-        {% endfor %}
+            <div class="row" data-row>
+                <div class="rank B"><div>B</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank C"><div>C</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank D"><div>D</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank F"><div>F</div></div>
+                <div class="items" data-items></div>
+            </div>
+            <div class="row" data-row>
+                <div class="rank G"><div>G</div></div>
+                <div class="items" data-items></div>
+            </div>
+        </div>
     </section>
+    <input id="to-rank-input" type="file" accept="image/*" multiple>
+    <div data-items id="to-rank" onclick="rank_input_click()">
+        <div data-label class="to-rank-label"><div>Choose or Drag Files</div></div>
+    </div>
+    <div class="create-tier" onclick="create_tier()"><div>Download</div></div>
 </div>
+<script src="{{ url_for('static', filename = 'html2canvas.min.js') }}"></script>
+<script src="{{ url_for('static', filename = 'index.js') }}"></script>
 {% endblock %}

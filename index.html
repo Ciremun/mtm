@@ -1,12 +1,24 @@
-{% extends "base.jinja" %}
-
-{% block title %}Mini Tiermaker - Create{% endblock %}
-
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/favicon.ico">
+    <link rel="stylesheet" href="/static/main.css">
+    <title>Mini Tiermaker</title>
+</head>
+<body>
+    <div class="content">
+        <div class="navbar-links">
+            <div><a href="/">All Tiers</a></div>
+            <div><a href="/create">Create</a></div>
+        </div>
+    </div>
 <div class="content">
-    <section class="tier-section">
+    <section id="capture" class="tier-section">
         <div class="tier-info">
-            <div class="tier-title"><input type="text" placeholder="Title" /></div>
+            <div class="tier-title"><input id="tier-title" type="text" placeholder="Title" /></div>
             <div class="tier-author"><input style="text-align:right" type="text" placeholder="Author" /></div>
         </div>
         <div class="tier">
@@ -44,7 +56,9 @@
     <div data-items id="to-rank" onclick="rank_input_click()">
         <div data-label class="to-rank-label"><div>Choose or Drag Files</div></div>
     </div>
-    <div class="create-tier" onclick="submit_tier()"><div>Create Tier</div></div>
+    <div class="create-tier" onclick="create_tier()"><div>Download</div></div>
 </div>
-<script src="{{ url_for('static', filename = 'index.js') }}"></script>
-{% endblock %}
+<script src="/static/html2canvas.min.js"></script>
+<script src="/static/index.js"></script>
+</body>
+</html>
