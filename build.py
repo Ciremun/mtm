@@ -19,7 +19,7 @@ if __name__ != '__main__':
 from jinja2 import Environment, FileSystemLoader
 
 def url_for(folder: str, *, filename: str):
-    return f'/{folder}/{filename}'
+    return f'{folder}/{filename}'
 
 def build_page(name: str) -> None:
     template = env.get_template(f'{name}.jinja')
