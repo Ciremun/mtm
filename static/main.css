@@ -19,15 +19,6 @@ input {
     outline: none;
 }
 
-.navbar-links {
-    display: flex;
-    flex-flow: row wrap;
-}
-
-.navbar-links>div {
-    padding: 5px;
-}
-
 .content {
     width: 95vw;
     margin: auto;
